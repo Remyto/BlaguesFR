@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTg0Mzk5MDM5OTcyOTAwODY0IiwibGltaXQiOjEwMCwia2V5IjoiWWVFNzNUWmZHT0Ntd0hPNnZNUEc5V2tyV3Y2a0JrRGt3RGpTQUlYdDI0TWJycnJXcVEiLCJjcmVhdGVkX2F0IjoiMjAyMS0wMy0xOFQxNjo1ODoxNiswMDowMCIsImlhdCI6MTYxNjA4NjY5Nn0.TAKMMb52FK_W67zIS8uufaUs7DYikw5tm0xkmNWijvw";
 
     private Button b_getRndmJoke;
-    private TextView tv_output;
+    private TextView tv_question, tv_answer;
 
 
     @Override
@@ -39,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         GetJoke_OnClickLister myGetJokes_OnClickListener = new GetJoke_OnClickLister();
         b_getRndmJoke = findViewById(R.id.b_getRndmJoke);
         b_getRndmJoke.setOnClickListener(myGetJokes_OnClickListener);
-        //tv_output.findViewById(R.id.tv_output);
+        tv_question = findViewById(R.id.tv_question);
+        tv_answer = findViewById(R.id.tv_answer);
 
     }
 
@@ -84,35 +84,25 @@ public class MainActivity extends AppCompatActivity {
                 URL url = new URL("https://www.blagues-api.fr/" + "api/random");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
+                /// Connect
                 conn.setRequestProperty("Authorization", "Bearer " + token);
                 conn.setRequestProperty("Content-Type", "application/json");
                 conn.setRequestMethod("GET");
 
-
+                /// Read JSON
                 BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 String output;
-
                 StringBuffer response = new StringBuffer();
                 while ((output = in.readLine()) != null) {
                     response.append(output);
                 }
-
                 in.close();
 
                 // printing result from response
+                JSONObject jObjt = new JSONObject(response.toString());
                 System.out.println("Response:-" + response.toString());
-                Log.i("response", response.toString());
+                return jObjt;
 
-                JSONObject JObjt = null;
-                try {
-                    JObjt = new JSONObject(response.toString());
-                    return JObjt;
-                }
-                catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                return JObjt;
             }
             catch (MalformedURLException e){
                 e.printStackTrace();
@@ -120,14 +110,35 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
             return null;
         }
 
-        @Override
-        protected void onPostExecute(JSONObject jsObj) {
-            //tv_output.setText("Your joke here");
+        protected void onPostExecute(JSONObject JObjt) {
+            /// Get Joke from JSON and set joke to textView
+
+            String errorMsg = "JSON element could not be found.";
+            String question, answer;
+
+
+            try {
+                question = JObjt.getString("joke");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                question = errorMsg;
+            }
+            try {
+                answer = JObjt.getString("answer");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                answer = errorMsg;
+            }
+
+            tv_question.setText(question);
+            tv_answer.setText(answer);
         }
     }
 }

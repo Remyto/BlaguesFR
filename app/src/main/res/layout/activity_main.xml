@@ -47,10 +47,16 @@
                 android:text="@string/b_getRndmJoke" />
 
             <TextView
-                android:id="@+id/tv_output"
+                android:id="@+id/tv_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="output" />
+                android:text="question" />
+
+            <TextView
+                android:id="@+id/tv_answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="réponse" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

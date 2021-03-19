@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tv_instructions">Ici vous pouvez filtrer nos blagues par thème.</string>
+    <string name="b_search">Recherchrer</string>
+</resources>

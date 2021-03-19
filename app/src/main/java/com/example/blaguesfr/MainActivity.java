@@ -1,8 +1,8 @@
 package com.example.blaguesfr;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -23,33 +23,34 @@ public class MainActivity extends AppCompatActivity {
     private Button b_getRndmJoke;
     private TextView tv_jokeID, tv_jokeType, tv_question, tv_answer;
 
+    private Button b_filterActivity;
+
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Toolbar toolbar = findViewById(R.id.toolbar_fragment);
-        GetJoke_OnClickLister myGetJokes_OnClickListener = new GetJoke_OnClickLister();
         b_getRndmJoke = findViewById(R.id.b_getRndmJoke);
-        b_getRndmJoke.setOnClickListener(myGetJokes_OnClickListener);
+        b_getRndmJoke.setOnClickListener(v -> {
+            myAsyncTaskClass myAsyncTask = new myAsyncTaskClass();
+            myAsyncTask.execute();
+        });
         tv_jokeID = findViewById(R.id.tv_jokeID);
         tv_jokeType = findViewById(R.id.tv_jokeType);
         tv_question = findViewById(R.id.tv_question);
         tv_answer = findViewById(R.id.tv_answer);
 
+        b_filterActivity = findViewById(R.id.b_filterActivity);
+        b_filterActivity.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FilterActivity.class);
+            startActivity(intent);
+        });
     }
 
 
 
     /// Classes for the MainActivity
-    class GetJoke_OnClickLister implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            myAsyncTaskClass myAsyncTask = new myAsyncTaskClass();
-            myAsyncTask.execute();
-        }
-    }
 
     private class myAsyncTaskClass extends AsyncTask <String, Void, JSONObject> {
         ///L'api de blagues utilise un token d'authentification Bearer pour les requêtes.

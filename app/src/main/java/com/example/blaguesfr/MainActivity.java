@@ -1,9 +1,7 @@
 package com.example.blaguesfr;
 
-import android.app.job.JobInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,19 +10,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTg0Mzk5MDM5OTcyOTAwODY0IiwibGltaXQiOjEwMCwia2V5IjoiWWVFNzNUWmZHT0Ntd0hPNnZNUEc5V2tyV3Y2a0JrRGt3RGpTQUlYdDI0TWJycnJXcVEiLCJjcmVhdGVkX2F0IjoiMjAyMS0wMy0xOFQxNjo1ODoxNiswMDowMCIsImlhdCI6MTYxNjA4NjY5Nn0.TAKMMb52FK_W67zIS8uufaUs7DYikw5tm0xkmNWijvw";
+    private final String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTg0Mzk5MDM5OTcyOTAwODY0IiwibGltaXQiOjEwMCwia2V5IjoiWWVFNzNUWmZHT0Ntd0hPNnZNUEc5V2tyV3Y2a0JrRGt3RGpTQUlYdDI0TWJycnJXcVEiLCJjcmVhdGVkX2F0IjoiMjAyMS0wMy0xOFQxNjo1ODoxNiswMDowMCIsImlhdCI6MTYxNjA4NjY5Nn0.TAKMMb52FK_W67zIS8uufaUs7DYikw5tm0xkmNWijvw";
 
     private Button b_getRndmJoke;
     private TextView tv_jokeID, tv_jokeType, tv_question, tv_answer;
@@ -100,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(JSONObject JObjt) {
             /// Get Joke from JSON and set joke to textView
 
-            /// TODO: Add JsonObject to history
+            /// TODO: Add JsonObject to user history
 
             String errorMsg = "JSON element could not be found.";
             String id, type, question, answer;

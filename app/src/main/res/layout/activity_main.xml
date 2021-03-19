@@ -11,8 +11,7 @@
         layout="@layout/toolbar_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior=
-            "@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,18 +20,13 @@
         tools:layout_editor_absoluteX="1dp">
 
         <LinearLayout
-            android:layout_width="409dp"
-            android:layout_height="match_parent"
+            android:layout_width="405dp"
+            android:layout_height="671dp"
+            android:layout_marginTop="56dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/tv_welcome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_welcomeText" />
 
             <TextView
                 android:id="@+id/message"
@@ -40,23 +34,48 @@
                 android:layout_height="wrap_content"
                 android:text="MainFragment" />
 
+            <TextView
+                android:id="@+id/tv_welcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_welcomeText" />
+
             <Button
                 android:id="@+id/b_getRndmJoke"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/b_getRndmJoke" />
 
-            <TextView
-                android:id="@+id/tv_question"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="question" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_answer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="réponse" />
+                <TextView
+                    android:id="@+id/tv_jokeID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="id" />
+
+                <TextView
+                    android:id="@+id/tv_jokeType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="type" />
+
+                <TextView
+                    android:id="@+id/tv_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="question" />
+
+                <TextView
+                    android:id="@+id/tv_answer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="réponse" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

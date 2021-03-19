@@ -1,5 +1,6 @@
 package com.example.blaguesfr;
 
+import android.app.job.JobInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTg0Mzk5MDM5OTcyOTAwODY0IiwibGltaXQiOjEwMCwia2V5IjoiWWVFNzNUWmZHT0Ntd0hPNnZNUEc5V2tyV3Y2a0JrRGt3RGpTQUlYdDI0TWJycnJXcVEiLCJjcmVhdGVkX2F0IjoiMjAyMS0wMy0xOFQxNjo1ODoxNiswMDowMCIsImlhdCI6MTYxNjA4NjY5Nn0.TAKMMb52FK_W67zIS8uufaUs7DYikw5tm0xkmNWijvw";
 
     private Button b_getRndmJoke;
-    private TextView tv_question, tv_answer;
+    private TextView tv_jokeID, tv_jokeType, tv_question, tv_answer;
 
 
     @Override
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         GetJoke_OnClickLister myGetJokes_OnClickListener = new GetJoke_OnClickLister();
         b_getRndmJoke = findViewById(R.id.b_getRndmJoke);
         b_getRndmJoke.setOnClickListener(myGetJokes_OnClickListener);
+        tv_jokeID = findViewById(R.id.tv_jokeID);
+        tv_jokeType = findViewById(R.id.tv_jokeType);
         tv_question = findViewById(R.id.tv_question);
         tv_answer = findViewById(R.id.tv_answer);
 
@@ -54,33 +57,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class myAsyncTaskClass extends AsyncTask <String, Void, JSONObject> {
+    private class myAsyncTaskClass extends AsyncTask <String, Void, JSONObject> {
         ///L'api de blagues utilise un token d'authentification Bearer pour les requêtes.
         // Les requêtes doivent toutes être effectuées via HTTPS. Tous les appels effectuées sans authentification ou en HTTP échoueront.
-
-        private String readStream (InputStream is) {
-            try {
-                ByteArrayOutputStream bo = new ByteArrayOutputStream();
-
-                int i = is.read();
-                while(i != -1) {
-                    bo.write(i);
-                    i = is.read();
-                }
-                return bo.toString();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "";
-            }
-        }
 
         @Override
         protected JSONObject doInBackground(String... strings) {
             /// Perform the HTTP connection, and re-instantiate the JSON object
 
             try{
-                Log.i("doInBackground", "here");// Sending get request
+                /// Send get request
                 URL url = new URL("https://www.blagues-api.fr/" + "api/random");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -92,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 /// Read JSON
                 BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 String output;
-                StringBuffer response = new StringBuffer();
+                StringBuilder response = new StringBuilder();
                 while ((output = in.readLine()) != null) {
                     response.append(output);
                 }
@@ -104,13 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 return jObjt;
 
             }
-            catch (MalformedURLException e){
-                e.printStackTrace();
-            } catch (ProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
+            catch (JSONException | IOException e){
                 e.printStackTrace();
             }
 
@@ -120,23 +100,50 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(JSONObject JObjt) {
             /// Get Joke from JSON and set joke to textView
 
+            /// TODO: Add JsonObject to history
+
             String errorMsg = "JSON element could not be found.";
-            String question, answer;
+            String id, type, question, answer;
+            /// JSON file contains the following:
+            //  "id": int, "type", "joke": String, "answer": String
 
-
-            try {
-                question = JObjt.getString("joke");
-            } catch (JSONException e) {
-                e.printStackTrace();
+            /// Prevent crashes
+            if (JObjt == null) {
+                id = errorMsg;
+                type = errorMsg;
                 question = errorMsg;
-            }
-            try {
-                answer = JObjt.getString("answer");
-            } catch (JSONException e) {
-                e.printStackTrace();
                 answer = errorMsg;
             }
+            else {
+                /// Get Data from JSON object
+                try {
+                    id = JObjt.getString("id");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    id = errorMsg;
+                }
+                try {
+                    type = JObjt.getString("type");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    type = errorMsg;
+                }try {
+                    question = JObjt.getString("joke");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    question = errorMsg;
+                }
+                try {
+                    answer = JObjt.getString("answer");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    answer = errorMsg;
+                }
+            }
 
+            /// Set data to views
+            tv_jokeID.setText(id);
+            tv_jokeType.setText(type);
             tv_question.setText(question);
             tv_answer.setText(answer);
         }

@@ -1,35 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
-    <include
+    <!--replaced using fragment_toolbar-->
+    <!--<include
         android:id="@+id/toolbar_fragment"
-        layout="@layout/toolbar_fragment"
+        layout="@layout/fragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"<
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="405dp"
-            android:layout_height="671dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="3dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <fragment
+                android:id="@+id/toolbar_container"
+                android:name="com.example.blaguesfr.toolbar_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="410dp"
+            android:layout_height="731dp"
+            android:orientation="vertical"><![CDATA[
+            tools:layout_editor_absoluteX="3dp">
+
+
+
+            ]]>
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/tv_welcome"
@@ -37,13 +52,39 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tv_welcomeText" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <fragment
+                    android:id="@+id/joke_fragmentContainer"
+                    android:name="com.example.blaguesfr.JokeFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:background="?android:attr/listDivider" />
 
-            <LinearLayout
+            <Button
+                android:id="@+id/b_getRndmJoke"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/b_getRndmJoke" />
+
+            <Button
+                android:id="@+id/b_filterActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/b_filterActivity" />
+
+            <!-- Now replaced using fragment_joke -->
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -72,28 +113,10 @@
                 android:id="@+id/tv_answer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="réponse" />
-
-            <View
-                android:id="@+id/divider1"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="?android:attr/listDivider" />
-
-            <Button
-                android:id="@+id/b_getRndmJoke"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/b_getRndmJoke" />
-
-            <Button
-                android:id="@+id/b_filterActivity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Filter Activity" />
+                android:text="réponse" />-->
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

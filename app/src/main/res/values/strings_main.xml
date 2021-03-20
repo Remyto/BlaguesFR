@@ -3,5 +3,6 @@
     <string name="tv_welcomeText">Bienvenue sur l\'application étudiante de blagues !</string>
 
     <string name="b_getRndmJoke">Blague aléatoire</string>
+    <string name="b_filterActivity">Filtrer les blagues</string>
 
 </resources>

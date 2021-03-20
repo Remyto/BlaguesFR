@@ -33,11 +33,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.joke_fragmentContainer, new JokeFragment()).commit();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.toolbar_container, new toolbar_fragment()).commit();
+        }
+
         b_getRndmJoke = findViewById(R.id.b_getRndmJoke);
         b_getRndmJoke.setOnClickListener(v -> {
             myAsyncTaskClass myAsyncTask = new myAsyncTaskClass();
             myAsyncTask.execute();
         });
+        /// Views from the fragment
         tv_jokeID = findViewById(R.id.tv_jokeID);
         tv_jokeType = findViewById(R.id.tv_jokeType);
         tv_question = findViewById(R.id.tv_question);

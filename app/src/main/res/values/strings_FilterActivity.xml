@@ -4,7 +4,11 @@
     <string name="b_search">Recherchrer</string>
 
     <string-array name="categories">
+        <item>blondes</item>
+        <item>beauf</item>
         <item>dark</item>
-        <item>general</item>
+        <item>dev</item>
+        <item>global</item>
+        <item>limit</item>
     </string-array>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.blaguesfr;
+package com.example.blaguesfr.FilterActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.example.blaguesfr.R;
 
 import org.json.JSONObject;
 
@@ -23,13 +25,18 @@ public class FilterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
+        /*if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.frag_CategoriesList, new CategoryFragment()).commit();
+        }*/
 
+        /*l_categories = findViewById(R.id.l_categories);
+        l_categories.setAdapter(new MyAdapter());
         b_search = findViewById(R.id.b_search);
         b_search.setOnClickListener(v -> {
-            l_categories.setAdapter(new MyAdapter());
             myAsyncTaskClass myAsyncTask = new myAsyncTaskClass();
             myAsyncTask.execute();
-        });
+        });*/
     }
 
 

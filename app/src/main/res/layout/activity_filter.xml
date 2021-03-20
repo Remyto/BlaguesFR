@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FilterActivity">
+    tools:context=".FilterActivity.FilterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,17 +20,11 @@
             android:layout_height="wrap_content"
             android:text="@string/tv_instructions" />
 
-        <ListView
-            android:id="@+id/l_categories"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <fragment
-                android:id="@+id/fragment"
-                android:name="com.example.blaguesfr.categoryChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </ListView>
+        <fragment
+            android:id="@+id/frag_CategoriesList"
+            android:name="com.example.blaguesfr.FilterActivity.CategoryFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/b_search"
@@ -44,10 +38,11 @@
             android:layout_height="1dp"
             android:background="?android:attr/listDivider" />
 
-        <ListView
-            android:id="@+id/l_list"
+        <fragment
+            android:id="@+id/fragment_jokesList"
+            android:name="com.example.blaguesfr.FilterActivity.CategoryFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

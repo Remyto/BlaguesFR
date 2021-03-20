@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.blaguesfr.FilterActivity.FilterActivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 

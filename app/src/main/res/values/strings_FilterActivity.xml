@@ -2,4 +2,9 @@
 <resources>
     <string name="tv_instructions">Ici vous pouvez filtrer nos blagues par thème.</string>
     <string name="b_search">Recherchrer</string>
+
+    <string-array name="categories">
+        <item>dark</item>
+        <item>general</item>
+    </string-array>
 </resources>

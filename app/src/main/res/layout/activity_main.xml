@@ -23,42 +23,38 @@
             android:orientation="vertical">
 
             <fragment
-                android:id="@+id/toolbar_container"
+                android:id="@+id/MainAct_toolbarContainer"
                 android:name="com.example.blaguesfr.toolbar_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_welcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_welcomeText" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="?android:attr/listDivider" />
+
         <LinearLayout
             android:layout_width="410dp"
             android:layout_height="731dp"
-            android:orientation="vertical"><![CDATA[
-            tools:layout_editor_absoluteX="3dp">
-
-
-
-            ]]>
-
-            <View
-                android:id="@+id/divider1"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="?android:attr/listDivider" />
-
-            <TextView
-                android:id="@+id/tv_welcome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_welcomeText" />
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/ly_joke"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <fragment
-                    android:id="@+id/joke_fragmentContainer"
+                    android:id="@+id/jokeContainer"
                     android:name="com.example.blaguesfr.JokeFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -66,9 +62,9 @@
             </LinearLayout>
 
             <View
-                android:id="@+id/divider"
+                android:id="@+id/divider1"
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
+                android:layout_height="50dp"
                 android:background="?android:attr/listDivider" />
 
             <Button
@@ -85,38 +81,37 @@
 
             <!-- Now replaced using fragment_joke -->
             <!--<LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_jokeID"
-                    android:layout_width="184dp"
-                    android:layout_height="wrap_content"
-                    android:text="id" />
-
-                <TextView
-                    android:id="@+id/tv_jokeType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="type" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_jokeID"
+                        android:layout_width="184dp"
+                        android:layout_height="wrap_content"
+                        android:text="id" />
 
-            <TextView
-                android:id="@+id/tv_question"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="question" />
+                    <TextView
+                        android:id="@+id/tv_jokeType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="type" />
 
-            <TextView
-                android:id="@+id/tv_answer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="réponse" />-->
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="question" />
+
+                <TextView
+                    android:id="@+id/tv_answer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="réponse" />-->
 
         </LinearLayout>
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

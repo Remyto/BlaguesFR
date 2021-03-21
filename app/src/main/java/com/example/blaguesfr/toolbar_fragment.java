@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
  */
 public class toolbar_fragment extends Fragment {
 
+    //protected TextView tv_jokeID, tv_jokeType, tv_question, tv_answer;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";

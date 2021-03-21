@@ -10,39 +10,76 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/tv_instructions" />
+            android:orientation="vertical">
 
-        <fragment
-            android:id="@+id/frag_CategoriesList"
-            android:name="com.example.blaguesfr.FilterActivity.CategoryFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <fragment
+                android:id="@+id/FilterAct_toolbarContainer"
+                android:name="com.example.blaguesfr.toolbar_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/b_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/b_search" />
-
-        <View
-            android:id="@+id/divider3"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <fragment
-            android:id="@+id/fragment_jokesList"
-            android:name="com.example.blaguesfr.FilterActivity.CategoryFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_instructions" />
+
+            <CheckBox
+                android:id="@+id/cb_SampleCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SampleCheckBox" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="10px"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <fragment
+                    android:id="@+id/categoriesListContainer"
+                    android:name="com.example.blaguesfr.FilterActivity.CategoryFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/b_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/b_search" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <fragment
+                    android:id="@+id/jokesListContainer"
+                    android:name="com.example.blaguesfr.FilterActivity.CategoryFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

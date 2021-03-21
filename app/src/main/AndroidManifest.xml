@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BlaguesFR">
+
+        <activity android:name=".AccountActivity"></activity>
         <activity android:name=".FilterActivity.FilterActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -19,6 +21,6 @@
         </activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- used to get data from the API -->
 
 </manifest>

@@ -18,12 +18,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 public class MainActivity extends AppCompatActivity {
     private final String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTg0Mzk5MDM5OTcyOTAwODY0IiwibGltaXQiOjEwMCwia2V5IjoiWWVFNzNUWmZHT0Ntd0hPNnZNUEc5V2tyV3Y2a0JrRGt3RGpTQUlYdDI0TWJycnJXcVEiLCJjcmVhdGVkX2F0IjoiMjAyMS0wMy0xOFQxNjo1ODoxNiswMDowMCIsImlhdCI6MTYxNjA4NjY5Nn0.TAKMMb52FK_W67zIS8uufaUs7DYikw5tm0xkmNWijvw";
 
     private Button b_getRndmJoke;
     private TextView tv_jokeID, tv_jokeType, tv_question, tv_answer;
+    private Button b_share;
 
     private Button b_filterActivity;
 
@@ -34,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.joke_fragmentContainer, new JokeFragment()).commit();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.toolbar_container, new toolbar_fragment()).commit();
+            FragmentManager fm = getSupportFragmentManager();
+
+            fm.beginTransaction().add(R.id.MainAct_toolbarContainer, new toolbar_fragment()).commit();
+            fm.beginTransaction().add(R.id.jokeContainer, new JokeFragment()).commit();
         }
 
         b_getRndmJoke = findViewById(R.id.b_getRndmJoke);
@@ -45,11 +47,17 @@ public class MainActivity extends AppCompatActivity {
             myAsyncTaskClass myAsyncTask = new myAsyncTaskClass();
             myAsyncTask.execute();
         });
+
         /// Views from the fragment
         tv_jokeID = findViewById(R.id.tv_jokeID);
         tv_jokeType = findViewById(R.id.tv_jokeType);
         tv_question = findViewById(R.id.tv_question);
         tv_answer = findViewById(R.id.tv_answer);
+        b_share = findViewById(R.id.b_share);
+        b_share.setOnClickListener(v -> {
+            shareAsyncTask myShareAsyncTask = new shareAsyncTask();
+            myShareAsyncTask.execute();
+        });
 
         b_filterActivity = findViewById(R.id.b_filterActivity);
         b_filterActivity.setOnClickListener(v -> {
@@ -61,6 +69,32 @@ public class MainActivity extends AppCompatActivity {
 
 
     /// Classes for the MainActivity
+
+    private class shareAsyncTask extends  AsyncTask <String, Void, String> {
+        /// Get content of joke and share it
+
+        @Override
+        protected String doInBackground(String... strings) {
+            /// Get content of joke fragment
+            String message = "";
+            message += tv_question.getText().toString();
+            message += tv_answer.getText().toString();
+
+            tv_jokeID.setText(tv_jokeID.getText().toString() + " (shared)");
+            return message;
+        }
+
+        @Override
+        protected void onPostExecute (String message) {
+            /// Send message
+
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this joke I found!");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, message);
+            startActivity(Intent.createChooser(shareIntent, "share joke"));
+        }
+    }
 
     private class myAsyncTaskClass extends AsyncTask <String, Void, JSONObject> {
         ///L'api de blagues utilise un token d'authentification Bearer pour les requêtes.
@@ -105,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(JSONObject JObjt) {
             /// Get Joke from JSON and set joke to textView
 
-            /// TODO: Add JsonObject to user history
+            /// TODO: Add JsonObject to user history, using READ_EXTERNAL_STORAGE permission
 
             String errorMsg = "JSON element could not be found.";
             String id, type, question, answer;

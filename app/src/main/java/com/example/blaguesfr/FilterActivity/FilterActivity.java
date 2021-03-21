@@ -8,7 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.blaguesfr.JokeFragment;
 import com.example.blaguesfr.R;
+import com.example.blaguesfr.toolbar_fragment;
 
 import org.json.JSONObject;
 
@@ -17,26 +19,33 @@ import java.util.Vector;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class FilterActivity extends AppCompatActivity {
+    private ListView l_categories, l_jokes;
     private Button b_search;
-    private ListView l_categories;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
-        /*if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.frag_CategoriesList, new CategoryFragment()).commit();
-        }*/
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.FilterAct_toolbarContainer, new toolbar_fragment()).commit();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.categoriesListContainer, new JokeFragment()).commit();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.jokesListContainer, new JokeFragment()).commit();
+        }
 
-        /*l_categories = findViewById(R.id.l_categories);
+        /*l_categories = findViewById(R.id.categoriesListContainer);
         l_categories.setAdapter(new MyAdapter());
         b_search = findViewById(R.id.b_search);
         b_search.setOnClickListener(v -> {
             myAsyncTaskClass myAsyncTask = new myAsyncTaskClass();
             myAsyncTask.execute();
-        });*/
+        });
+        l_jokes = findViewById(R.id.jokesListContainer);*/
+        /// TODO: set L_jokes adapter*/
     }
 
 

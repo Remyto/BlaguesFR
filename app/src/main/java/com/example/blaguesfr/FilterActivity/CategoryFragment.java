@@ -86,5 +86,6 @@ public class CategoryFragment extends ListFragment implements AdapterView.OnItem
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getActivity(), "Item: " + position, Toast.LENGTH_SHORT).show();
+        this.setEmptyText("hello there");
     }
 }

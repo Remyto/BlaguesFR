@@ -6,5 +6,6 @@
 
     <string name="b_getRndmJoke">Blague aléatoire</string>
     <string name="b_filterActivity">Filtrer les blagues</string>
+    <string name="b_newJokeActivity">Proposer une blague</string>
 
 </resources>

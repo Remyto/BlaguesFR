@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tv_newJoke_instruction"> Remplissez les champs pour proposez votre blague.</string>
+
+    <string name="b_submitJoke">Proposer la blague</string>
+</resources>

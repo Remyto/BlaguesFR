@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_jokeID, tv_jokeType, tv_question, tv_answer;
     private Button b_share;
 
-    private Button b_filterActivity;
+    private Button b_filterActivity, b_newJokeActivity;
 
 
     @Override
@@ -62,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
         b_filterActivity = findViewById(R.id.b_filterActivity);
         b_filterActivity.setOnClickListener(v -> {
             Intent intent = new Intent(this, FilterActivity.class);
+            startActivity(intent);
+        });
+        b_newJokeActivity = findViewById(R.id.b_newJokeActivity);
+        b_newJokeActivity.setOnClickListener(v -> {
+            Intent intent = new Intent(this, NewJokeActivity.class);
             startActivity(intent);
         });
     }
